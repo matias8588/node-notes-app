@@ -4,10 +4,12 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+const passport = require('passport')
 
 // Inicializaciones
 const app = express()
 require('./database')
+require('./config/passport')
 
 // Configuraciones
 app.set('port', process.env.port || 3000) // Conexión con el puerto 3000 local
@@ -28,12 +30,15 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 })) // Autenticación del usuario y almacenamiento temporal en la base de datos
+app.use(passport.initialize()) // Autenticacion de sesion del usuario y registro en base de datos
+app.use(passport.session())
 app.use(flash()) // Enviar mensaje entre vistas
-
 // Variables globales
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg')
   res.locals.error_msg = req.flash('error_msg')
+  res.locals.error = req.flash('error')
+
   next()
 })
 

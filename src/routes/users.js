@@ -1,10 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
+const passport = require('passport')
 
 router.get('/users/signin', (req, res) => {
   res.render('users/signin')
 })
+
+router.post('/users/signin', passport.authenticate('local', {
+  successRedirect: '/notes',
+  failureRedirect: '/users/signin',
+  failureFlash: true
+}))
 
 router.get('/users/signup', (req, res) => {
   res.render('users/signup')
@@ -15,9 +22,6 @@ router.post('/users/signup', async (req, res) => {
   const errors = []
   if (name.length <= 0) {
     errors.push({ text: 'Por favor inserte un nombre' })
-  }
-  if (email.length <= 0) {
-    errors.push({ text: 'Por favor inserte un email' })
   }
   if (password !== confirmPassword) {
     errors.push({ text: 'Las contraseñas no coinciden' })
