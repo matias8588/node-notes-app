@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="/img/sticky-note.ico" />
+    <link rel="icon" type="image/png" href="/img/sticky-note.ico" />
+    <link rel="icon" type="image/gif" href="/img/sticky-note.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="css/main.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.min.css">
     <title>Notes App</title>
 </head>
 
@@ -15,14 +19,16 @@
 
     {{> navigation}}
 
-    <main>
+    <main id="app">
         <div class="container p-4">
             {{> messages}}
             {{> errors}}
         {{{ body }}}
         </div>
     </main>
-    <p>Footer</p>
+
+    {{> footer}}
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

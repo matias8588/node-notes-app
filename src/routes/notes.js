@@ -3,6 +3,11 @@ const router = express.Router()
 const Note = require('../models/Note')
 const { isAuthenticated } = require('../helpers/auth')
 
+// Nueva nota
+router.get('/notes/add', isAuthenticated, (req, res) => {
+  res.render('notes/new-note')
+})
+
 router.post('/notes/new-note', isAuthenticated, async (req, res) => {
   const { title, description } = req.body
   const errors = []
@@ -34,10 +39,6 @@ router.get('/notes', isAuthenticated, async (req, res) => {
   res.render('notes/all-notes', {
     notes
   })
-})
-
-router.get('/notes/add', isAuthenticated, (req, res) => {
-  res.render('notes/new-note')
 })
 
 router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {

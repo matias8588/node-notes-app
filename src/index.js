@@ -48,7 +48,7 @@ app.use(require('./routes/notes'))
 app.use(require('./routes/users'))
 
 // Archivos estaticos
-app.use(express.static(path.join(__dirname, 'public'))) // Direccion a la carpeta con archivos estaticos
+app.use(express.static(path.join(__dirname, '/public'))) // Direccion a la carpeta con archivos estaticos
 
 // Inicio del servidor
 app.listen(app.get('port'), () => {
