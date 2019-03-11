@@ -14,7 +14,7 @@ router.post('/users/signin', passport.authenticate('local', {
 }))
 
 router.get('/users/signup', (req, res) => {
-  res.render('users/signup')
+  res.render('/users/signup')
 })
 
 router.post('/users/signup', async (req, res) => {
