@@ -10,9 +10,10 @@ const passport = require('passport')
 const app = express()
 require('./database')
 require('./config/passport')
+var port = process.env.port || 3000
 
 // Configuraciones
-app.set('port', process.env.port || 3000) // Conexión con el puerto 3000 local
+app.set('port', port) // Conexión con el puerto 3000 local
 app.set('views', path.join(__dirname, 'views')) // Configuración para que node encuentre la carpeta views dentro de src
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
