@@ -10,7 +10,7 @@ const passport = require('passport')
 const app = express()
 require('./database')
 require('./config/passport')
-var port = process.env.port || 3000
+var port = Number(process.env.PORT || 3000)
 
 // Configuraciones
 app.set('port', port) // Conexión con el puerto 3000 local

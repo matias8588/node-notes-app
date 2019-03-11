@@ -5,7 +5,7 @@ const { isAuthenticated } = require('../helpers/auth')
 
 // Nueva nota
 router.get('/notes/add', isAuthenticated, (req, res) => {
-  res.render('/notes/new-note')
+  res.render('notes/new-note')
 })
 
 router.post('/notes/new-note', isAuthenticated, async (req, res) => {
@@ -20,7 +20,7 @@ router.post('/notes/new-note', isAuthenticated, async (req, res) => {
     })
   }
   if (errors.length > 0) {
-    res.render('/notes/new-note', isAuthenticated, {
+    res.render('notes/new-note', isAuthenticated, {
       errors,
       title,
       description
@@ -36,14 +36,14 @@ router.post('/notes/new-note', isAuthenticated, async (req, res) => {
 
 router.get('/notes', isAuthenticated, async (req, res) => {
   const notes = await Note.find({ user: req.user.id }).sort({ date: 'desc' })
-  res.render('/notes/all-notes', {
+  res.render('notes/all-notes', {
     notes
   })
 })
 
 router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
   const note = await Note.findById(req.params.id)
-  res.render('/notes/edit-note', { note })
+  res.render('notes/edit-note', { note })
 })
 
 router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {
